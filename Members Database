@@ -1,3 +1,5 @@
+#IN THIS SQL CODE, I'M QUERYING A DATABASE THAT'S HOLDING MEMBERSHIP DATA TO ANSWER QUESTIONS REGARDING MEMBERS AND FACILIITES.
+
 #1Return customer IDs of customers who have spent at least $110 with the staff member who has an ID  of 3
 SELECT customer_id,SUM(amount) FROM payment
 WHERE staff_id NOT IN (1)
