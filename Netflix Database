@@ -1,0 +1,26 @@
+#In this SQL code, I'm querying a database that's holding Nexflix data to answer questions about the data.
+
+--TOTAL MOVIES IN DATABASE
+SELECT COUNT(title) FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+--MOST RECENT BATCH OF TV SHOWS AND MOVIES ADDED TO DATABASE
+SELECT date_added FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" 
+    ORDER BY date_added desc;
+
+--LIST OF ALL MOVIES AND TV SHOWS IN ALPHABETICAL ORDER
+SELECT title FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" 
+    ORDER BY title ASC;
+    
+--OLDEST MOVIE IN DATABASE WITH DATE
+SELECT title,release_year FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+    ORDER BY release_year
+    LIMIT 1;
+    
+-- THE DIRECTOR FOR THE MOVIE BRIGHT START
+SELECT "CharlotteChaze/BreakIntoTech"."netflix_people".director
+, "CharlotteChaze/BreakIntoTech"."netflix_titles_info".title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people"
+JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ON "CharlotteChaze/BreakIntoTech"."netflix_people".show_id =
+"CharlotteChaze/BreakIntoTech"."netflix_titles_info".show_id
+WHERE title='Bright Star';    
