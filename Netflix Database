@@ -18,13 +18,15 @@ SELECT title FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
     ORDER BY title ASC;
     
 #3 What is the oldest movie in the database and what year was it made?
-SELECT title,release_year FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+SELECT title,release_year 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+    WHERE type='Movie'
     ORDER BY release_year
     LIMIT 1;
     
 #4 Who was the Director for the movie Bright Star?
 SELECT director,title
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
-LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
-ON titles.show_id=people.show_id
-WHERE titles.title='Bright Star';
+    LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
+    ON titles.show_id=people.show_id
+    WHERE titles.title='Bright Star';
