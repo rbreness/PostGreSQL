@@ -1,0 +1,19 @@
+#IN THIS SQL CODE, I'M ANALYSING A CITY'S BIKE LANE DATABASE
+#1 Created a list of all the bike lanes that have an average safety rating of 4.0 or higher. 
+Table includes average safety rating for each of those bike lanes labled as "Safe Lane".
+WITH safety_average_cte AS (
+  SELECT street, AVG(safetyrating) as 'rating'
+   FROM citybikelanes
+   GROUP BY street
+)
+SELECT 
+street,
+rating,
+'Safe Lane' as 'label'
+FROM safety_average_cte
+  WHERE rating >=4
+
+#2 Created a list of all the bike lanes with the safety ratings and the average safety rating for each lane. 
+Bike lanes with a 4 or more were labeled "Leave As-Is".
+Bike lanes with an average safety rating of less than 2.5 were labeled as "Remove".
+All other bike lanes were labeled as "Improvements Needed".
