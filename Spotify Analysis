@@ -1,0 +1,15 @@
+#IN THIS SQL CODE, I'M ANALYSING THE SPOTIFY DATA 
+
+#1 Calculating the average popularity for the artists in the Spotify data table. 
+#Every artist with an average popularity of 90 or above was labeled as a “Top Star”. The artists name and average popularity was included on the table.
+WITH popularity_average_CTE AS (
+SELECT s.artist_name
+,AVG(s.popularity) AS avg_popularity
+FROM SpotifyData s
+   GROUP BY s.artist_name
+)
+SELECT artist_name
+,avg_popularity,
+'Top Star' AS tag
+FROM popularity_average_CTE
+   WHERE avg_popularity >=90;
