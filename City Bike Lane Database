@@ -17,3 +17,11 @@ FROM safety_average_cte
 Bike lanes with a 4 or more were labeled "Leave As-Is".
 Bike lanes with an average safety rating of less than 2.5 were labeled as "Remove".
 All other bike lanes were labeled as "Improvements Needed".
+SELECT street, safetyrating,
+AVG(safetyrating) OVER(PARTITION BY street) AS "Average_safety_rating",
+   CASE
+       WHEN AVG(safetyrating) OVER(PARTITION BY street) >=4 THEN "Leave As-Is"
+       WHEN AVG(safetyrating) OVER(PARTITION BY street) <2.5 THEN "Remove"
+       ELSE "Improvements Needed"
+   END AS recommendation
+FROM CityBikeLanes;
